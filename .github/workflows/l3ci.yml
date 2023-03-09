@@ -1,4 +1,4 @@
-name: setup-and-test
+name: setup and test
 on: push
 jobs:
   build:
@@ -13,3 +13,7 @@ jobs:
       - run: make setup
       - run: make test
       - run: make lint
+      - name: Run Snyk
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
